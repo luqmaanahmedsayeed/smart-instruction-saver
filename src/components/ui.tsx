@@ -1,4 +1,5 @@
 import { useState, type ReactNode } from "react";
+import { useApp } from "@/state/store";
 import { cn } from "@/lib/utils";
 
 /* ---------- HUD panel with corner brackets + label strip ---------- */
@@ -94,8 +95,9 @@ export function downloadJson(data: unknown, filename: string) {
   URL.revokeObjectURL(url);
 }
 
-/* ---------- toast stack ---------- */
-export function Toasts({ toasts }: { toasts: { id: number; msg: string }[] }) {
+/* ---------- toast stack (reads app state) ---------- */
+export function Toasts() {
+  const { toasts } = useApp();
   return (
     <div aria-live="polite" className="pointer-events-none fixed bottom-4 right-4 z-[60] flex flex-col gap-2">
       {toasts.map((t) => (
