@@ -10,11 +10,47 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ExplorerRouteImport } from './routes/explorer'
+import { Route as PersonaliseRouteImport } from './routes/personalise'
+import { Route as RecapRouteImport } from './routes/recap'
+import { Route as RecapStudioRouteImport } from './routes/recap-studio'
+import { Route as StackRouteImport } from './routes/stack'
+import { Route as StudioRouteImport } from './routes/studio'
 import { Route as TacticalRouteImport } from './routes/tactical'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExplorerRoute = ExplorerRouteImport.update({
+  id: '/explorer',
+  path: '/explorer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PersonaliseRoute = PersonaliseRouteImport.update({
+  id: '/personalise',
+  path: '/personalise',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecapRoute = RecapRouteImport.update({
+  id: '/recap',
+  path: '/recap',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecapStudioRoute = RecapStudioRouteImport.update({
+  id: '/recap-studio',
+  path: '/recap-studio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StackRoute = StackRouteImport.update({
+  id: '/stack',
+  path: '/stack',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudioRoute = StudioRouteImport.update({
+  id: '/studio',
+  path: '/studio',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TacticalRoute = TacticalRouteImport.update({
@@ -25,27 +61,76 @@ const TacticalRoute = TacticalRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/explorer': typeof ExplorerRoute
+  '/personalise': typeof PersonaliseRoute
+  '/recap': typeof RecapRoute
+  '/recap-studio': typeof RecapStudioRoute
+  '/stack': typeof StackRoute
+  '/studio': typeof StudioRoute
   '/tactical': typeof TacticalRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/explorer': typeof ExplorerRoute
+  '/personalise': typeof PersonaliseRoute
+  '/recap': typeof RecapRoute
+  '/recap-studio': typeof RecapStudioRoute
+  '/stack': typeof StackRoute
+  '/studio': typeof StudioRoute
   '/tactical': typeof TacticalRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/explorer': typeof ExplorerRoute
+  '/personalise': typeof PersonaliseRoute
+  '/recap': typeof RecapRoute
+  '/recap-studio': typeof RecapStudioRoute
+  '/stack': typeof StackRoute
+  '/studio': typeof StudioRoute
   '/tactical': typeof TacticalRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/tactical'
+  fullPaths:
+    | '/'
+    | '/explorer'
+    | '/personalise'
+    | '/recap'
+    | '/recap-studio'
+    | '/stack'
+    | '/studio'
+    | '/tactical'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/tactical'
-  id: '__root__' | '/' | '/tactical'
+  to:
+    | '/'
+    | '/explorer'
+    | '/personalise'
+    | '/recap'
+    | '/recap-studio'
+    | '/stack'
+    | '/studio'
+    | '/tactical'
+  id:
+    | '__root__'
+    | '/'
+    | '/explorer'
+    | '/personalise'
+    | '/recap'
+    | '/recap-studio'
+    | '/stack'
+    | '/studio'
+    | '/tactical'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ExplorerRoute: typeof ExplorerRoute
+  PersonaliseRoute: typeof PersonaliseRoute
+  RecapRoute: typeof RecapRoute
+  RecapStudioRoute: typeof RecapStudioRoute
+  StackRoute: typeof StackRoute
+  StudioRoute: typeof StudioRoute
   TacticalRoute: typeof TacticalRoute
 }
 
@@ -56,6 +141,48 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explorer': {
+      id: '/explorer'
+      path: '/explorer'
+      fullPath: '/explorer'
+      preLoaderRoute: typeof ExplorerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/personalise': {
+      id: '/personalise'
+      path: '/personalise'
+      fullPath: '/personalise'
+      preLoaderRoute: typeof PersonaliseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recap': {
+      id: '/recap'
+      path: '/recap'
+      fullPath: '/recap'
+      preLoaderRoute: typeof RecapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recap-studio': {
+      id: '/recap-studio'
+      path: '/recap-studio'
+      fullPath: '/recap-studio'
+      preLoaderRoute: typeof RecapStudioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stack': {
+      id: '/stack'
+      path: '/stack'
+      fullPath: '/stack'
+      preLoaderRoute: typeof StackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/studio': {
+      id: '/studio'
+      path: '/studio'
+      fullPath: '/studio'
+      preLoaderRoute: typeof StudioRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tactical': {
@@ -70,6 +197,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ExplorerRoute: ExplorerRoute,
+  PersonaliseRoute: PersonaliseRoute,
+  RecapRoute: RecapRoute,
+  RecapStudioRoute: RecapStudioRoute,
+  StackRoute: StackRoute,
+  StudioRoute: StudioRoute,
   TacticalRoute: TacticalRoute,
 }
 export const routeTree = rootRouteImport
