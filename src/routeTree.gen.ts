@@ -10,11 +10,23 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as RecapRouteImport } from './routes/recap'
+import { Route as StudioRouteImport } from './routes/studio'
 import { Route as TacticalRouteImport } from './routes/tactical'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecapRoute = RecapRouteImport.update({
+  id: '/recap',
+  path: '/recap',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudioRoute = StudioRouteImport.update({
+  id: '/studio',
+  path: '/studio',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TacticalRoute = TacticalRouteImport.update({
@@ -25,27 +37,35 @@ const TacticalRoute = TacticalRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/recap': typeof RecapRoute
+  '/studio': typeof StudioRoute
   '/tactical': typeof TacticalRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/recap': typeof RecapRoute
+  '/studio': typeof StudioRoute
   '/tactical': typeof TacticalRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/recap': typeof RecapRoute
+  '/studio': typeof StudioRoute
   '/tactical': typeof TacticalRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/tactical'
+  fullPaths: '/' | '/recap' | '/studio' | '/tactical'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/tactical'
-  id: '__root__' | '/' | '/tactical'
+  to: '/' | '/recap' | '/studio' | '/tactical'
+  id: '__root__' | '/' | '/recap' | '/studio' | '/tactical'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  RecapRoute: typeof RecapRoute
+  StudioRoute: typeof StudioRoute
   TacticalRoute: typeof TacticalRoute
 }
 
@@ -56,6 +76,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recap': {
+      id: '/recap'
+      path: '/recap'
+      fullPath: '/recap'
+      preLoaderRoute: typeof RecapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/studio': {
+      id: '/studio'
+      path: '/studio'
+      fullPath: '/studio'
+      preLoaderRoute: typeof StudioRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tactical': {
@@ -70,6 +104,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  RecapRoute: RecapRoute,
+  StudioRoute: StudioRoute,
   TacticalRoute: TacticalRoute,
 }
 export const routeTree = rootRouteImport
